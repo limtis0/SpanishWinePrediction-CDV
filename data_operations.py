@@ -8,7 +8,7 @@ def column_replace_uncommon(df, col_name, val_thresh, replace_name):
 
 
 def get_data():
-    df = pd.read_csv('./wines_SPA.csv')
+    df = pd.read_csv('csv/wines_SPA.csv')
 
     df.drop(['num_reviews', 'wine', 'country'], axis=1, inplace=True)  # Remove not-usable info
 
