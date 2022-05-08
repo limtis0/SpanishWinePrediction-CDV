@@ -1,31 +1,52 @@
-import pandas as pd
-import numpy as np
+import data_operations
+
 import pickle
-
 from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import cross_val_score, GridSearchCV  # , cross_val_predict  # Can also be used for scores
+# from sklearn.model_selection import train_test_split
 
 
-# Replaces values that are not common (<thresh)
-def column_replace_uncommon(col_name, val_thresh, replace_name):
-    df.loc[df[col_name].value_counts()[df[col_name]].values < val_thresh, col_name] = replace_name
+# Trains max_depth*n_estimators models and returns the best one
+def rfr_model(X, y):
+    # Perform grid search
+    gsc = GridSearchCV(
+        estimator=RandomForestRegressor(),
+        param_grid={
+            'max_depth': range(4, 10),  # Tree max depth
+            'n_estimators': (10, 15, 20, 25, 30, 35, 40, 50),  # Number of trees
+        },
+        cv=10, scoring='neg_mean_squared_error', verbose=3, n_jobs=5
+    )
+
+    grid_result = gsc.fit(X, y)
+    best_params = grid_result.best_params_
+    rfr = RandomForestRegressor(max_depth=best_params['max_depth'],
+                                n_estimators=best_params['n_estimators'],
+                                random_state=False, verbose=True)
+
+    # K-Fold CV
+    scores = cross_val_score(rfr, X, y, cv=10, scoring='neg_mean_absolute_error')
+    print(f'Best params: {best_params}')
+    print(f'Scores: {scores}')
+    return rfr
 
 
 if __name__ == '__main__':
     # DATA OPERATIONS
-    pd.set_option('display.max_columns', None)
+    X, y = data_operations.get_data()
 
-    df = pd.read_csv('./wines_SPA.csv')
+    # # Finds model with the best options // Options below are found by using this
+    # model = rfr_model(X, y)
 
-    df.drop(['num_reviews', 'wine', 'country'], axis=1, inplace=True)  # Remove not-usable info
+    max_depth = 9
+    num_trees = 20
+    model = RandomForestRegressor(max_depth=max_depth, n_estimators=num_trees)
 
-    df['year'] = df['year'].replace('N.V.', np.nan)  # Remove Non-Vintage wines and Na's
-    df = df.dropna()
-    df['year'] = df['year'].astype(np.int64)
+    # # Training and testing from one DB
+    # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+    # model.fit(X_train, y_train)
+    # print(model.score(X_test, y_test))
 
-    # Replace uncommon values with 'other'
-    column_replace_uncommon('winery', 20, 'other')
-    column_replace_uncommon('region', 10, 'other')
-
-    # MODEL TRAINING
-    X = df.drop(columns=['rating'])
-    y = df['rating']
+    model.fit(X, y)
+    with open(f'./models/depth{max_depth}_trees{num_trees}.pkl', 'wb') as pkl:
+        pickle.dump(model, pkl)
