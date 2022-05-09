@@ -1,19 +1,23 @@
 import data_operations
 
-import pickle
+import random_forest
+import warnings
+
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import cross_val_score, GridSearchCV  # , cross_val_predict  # Can also be used for scores
 # from sklearn.model_selection import train_test_split
 
+import pickle
 
-# Trains max_depth*n_estimators models and returns the best one
+
+# Trains (max_depth * n_estimators) models and returns the best one  //  (9, 20) is shown as the best
 def rfr_model(X, y):
     # Perform grid search
     gsc = GridSearchCV(
         estimator=RandomForestRegressor(),
         param_grid={
             'max_depth': range(4, 10),  # Tree max depth
-            'n_estimators': (10, 15, 20, 25, 30, 35, 40, 50),  # Number of trees
+            'n_estimators': (10, 15, 20, 25, 30, 35, 40, 50, 100),  # Number of trees
         },
         cv=10, scoring='neg_mean_squared_error', verbose=3, n_jobs=5
     )
@@ -28,25 +32,39 @@ def rfr_model(X, y):
     scores = cross_val_score(rfr, X, y, cv=10, scoring='neg_mean_absolute_error')
     print(f'Best params: {best_params}')
     print(f'Scores: {scores}')
+
     return rfr
 
 
-if __name__ == '__main__':
-    # DATA OPERATIONS
-    X, y = data_operations.get_data()
+def from_scratch_model(X, y, max_depth=9, num_trees=20, min_samples_split=2):
+    model = random_forest.RandomForestRegressor(
+        max_depth=max_depth,
+        num_trees=num_trees,
+        min_samples_split=min_samples_split)
 
-    # # Finds model with the best options // Options below are found by using this
-    # model = rfr_model(X, y)
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", category=RuntimeWarning)
+        model.fit(X, y)
 
-    max_depth = 9
-    num_trees = 20
+    return model
+
+
+def sklearn_model(X, y, max_depth=9, num_trees=20):
     model = RandomForestRegressor(max_depth=max_depth, n_estimators=num_trees)
+    model.fit(X, y)
+
+    return model
+
+
+if __name__ == '__main__':
+    X, y = data_operations.get_data()
 
     # # Training and testing from one DB
     # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
-    # model.fit(X_train, y_train)
+    # # MODEL.FIT()
     # print(model.score(X_test, y_test))
 
-    model.fit(X, y)
-    with open(f'./models/depth{max_depth}_trees{num_trees}.pkl', 'wb') as pkl:
+    model = from_scratch_model(X, y, max_depth=9, num_trees=20, min_samples_split=2)
+
+    with open(f'./models/depth9_trees20-SCRATCH.pkl', 'wb') as pkl:
         pickle.dump(model, pkl)

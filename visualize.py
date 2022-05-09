@@ -1,7 +1,6 @@
 import pandas as pd
 
 import data_operations
-import numpy as np
 
 import pickle
 import matplotlib.pyplot as plt
@@ -9,7 +8,6 @@ from sklearn.tree import export_graphviz
 
 
 def export_tree(model_path, output_path, tree_ind):
-    # Model (can also use single decision tree)
     with open(model_path, 'rb') as f:
         model = pickle.load(f)
 
@@ -42,4 +40,5 @@ def model_comparison(model_path, output_path):
 
 
 if __name__ == '__main__':
+    model_comparison('models/depth9_trees20-SCRATCH.pkl', './images/model-comparison-FROM-SCRATCH.png')
     pass
