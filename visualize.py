@@ -29,7 +29,7 @@ def model_comparison(model_path, output_path):
     y_predictions = np.flip(model.predict(X))
 
     plt.figure(figsize=(15, 5))
-    plt.plot(y_predictions, label='AI Prediction')
+    plt.plot(y_predictions, label='AI Prediction', linestyle='', marker='o', markersize=2.5)
     plt.plot(y, label='Actual Reviews')
     plt.legend()
     plt.savefig(output_path)
