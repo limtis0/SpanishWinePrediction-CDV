@@ -1,10 +1,10 @@
 import pandas as pd
-
-import data_operations
-
-import pickle
 import matplotlib.pyplot as plt
 from sklearn.tree import export_graphviz
+from os.path import getsize
+
+import data_operations
+import pickle
 
 
 def export_tree(model_path, output_path, tree_ind):
@@ -39,6 +39,17 @@ def model_comparison(model_path, output_path):
     plt.savefig(output_path)
 
 
+# Takes dictionary of a format label:file_path
+def file_size_comp(dict_files, output_path):
+    sizes = [round(getsize(f)/1_048_576, 2) for f in dict_files.values()]
+    labels = [f'{key} ({size}MB)' for key, size in zip(list(dict_files.keys()), sizes)]
+    print(sizes)
+
+    plt.figure(figsize=(10, 5))
+    plt.title('Sizes of built models')
+    plt.bar(labels, sizes, color='maroon', width=0.6)
+    plt.savefig(output_path)
+
+
 if __name__ == '__main__':
-    model_comparison('models/depth9_trees20-SCRATCH.pkl', './images/model-comparison-FROM-SCRATCH.png')
     pass
