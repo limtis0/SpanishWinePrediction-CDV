@@ -1,4 +1,5 @@
 import data_operations
+import numpy as np
 
 import pickle
 import matplotlib.pyplot as plt
@@ -25,7 +26,7 @@ def model_comparison(model_path, output_path):
 
     X, y = data_operations.get_data()
     y = sorted(y.to_numpy())
-    y_predictions = sorted(model.predict(X))
+    y_predictions = np.flip(model.predict(X))
 
     plt.figure(figsize=(15, 5))
     plt.plot(y_predictions, label='AI Prediction')
