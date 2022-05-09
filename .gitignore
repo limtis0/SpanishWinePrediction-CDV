@@ -1,2 +1,5 @@
 .idea
 .vscode
+
+# Flask
+web_ui/__pycache__/
