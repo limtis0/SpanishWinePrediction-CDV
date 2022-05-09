@@ -1,3 +1,5 @@
+import pandas as pd
+
 import data_operations
 import numpy as np
 
@@ -25,12 +27,16 @@ def model_comparison(model_path, output_path):
         model = pickle.load(f)
 
     X, y = data_operations.get_data()
-    y = sorted(y.to_numpy())
-    y_predictions = np.flip(model.predict(X))
+    y = y.to_numpy()
+    y_predictions = model.predict(X)
+
+    predicts = pd.DataFrame({'ai': y_predictions, 'reviews': y})
+    predicts = predicts.sort_values(by='reviews')
+    predicts = predicts.reset_index()
 
     plt.figure(figsize=(15, 5))
-    plt.plot(y_predictions, label='AI Prediction', linestyle='', marker='o', markersize=2.5)
-    plt.plot(y, label='Actual Reviews')
+    plt.plot(predicts['ai'], label='AI Prediction', linestyle='', marker='o', markersize=2.5)
+    plt.plot(predicts['reviews'], label='Actual Reviews')
     plt.legend()
     plt.savefig(output_path)
 
