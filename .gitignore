@@ -1,9 +1,9 @@
 .idea
 .vscode
-<<<<<<< HEAD
 
 # Flask
 web_ui/__pycache__/
-=======
+
+# AI
 .pyc
->>>>>>> origin/master
+
