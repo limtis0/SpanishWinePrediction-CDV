@@ -7,3 +7,8 @@ web_ui/__pycache__/
 # AI
 .pyc
 
+# Webpack
+web_ui/webpack/node_modules
+
+# Bundler
+web_ui/scripts/RunBundler/__pycache__/

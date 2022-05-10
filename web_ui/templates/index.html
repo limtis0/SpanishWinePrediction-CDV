@@ -1,7 +1,18 @@
-<!doctype html>
-<title>Hello from Flask</title>
-{% if name %}
-  <h1>Hello {{ name }}!</h1>
-{% else %}
-  <h1>Hello, World!</h1>
-{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <title>Wine</title>
+  </head>
+  <body>
+    <h1>Header</h1>
+    <div id="like_button_container"></div>
+
+    <!-- React --->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+
+    <!-- React components --->
+    <script type="module" src="{{url_for('static', filename='main.js')}}"></script>
+  </body>
+</html>
