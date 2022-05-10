@@ -1,1 +1,6 @@
 @import "./styles/widgets/process_btn.css";
+
+.centered {
+    margin: auto;
+    text-align: center;
+}
