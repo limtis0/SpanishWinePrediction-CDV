@@ -2,7 +2,7 @@ from scripts.RunBundler import bundle
 
 from flask import Flask, render_template
 
-bundle(full_log=True)
+bundle(full_log=False)
 
 app = Flask(__name__)
 
