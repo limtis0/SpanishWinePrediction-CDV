@@ -36,6 +36,7 @@ def model_predict(dataframe, model, year, price, body, acidity, wine_type, regio
 
     Same with model
     """
+    pd.options.mode.chained_assignment = None
     df = dataframe.copy()
 
     df['year'][0] = year
