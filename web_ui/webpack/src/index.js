@@ -1,9 +1,11 @@
-import {LikeButton} from "./js/widgets/process_btn"
-import {DropDownList} from "./js/widgets/dropdown_list";
+'use strict';
 
-const e = React.createElement;
+import {DropdownApp} from "./js/widgets/dropdown_list.jsx";
 
-const domContainer = document.querySelector('#like_button_container');
-const domContainer2 = document.querySelector('#drop');
-ReactDOM.render(e(LikeButton), domContainer);
-ReactDOM.render(e(DropDownList), domContainer2);
+const renderer = React.createElement;
+
+const domContainers = [
+    document.querySelector('#drop'),
+]
+
+ReactDOM.render(renderer(DropdownApp), domContainers[0]);

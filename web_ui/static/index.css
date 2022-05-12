@@ -1,4 +1,5 @@
 @import "./styles/widgets/process_btn.css";
+@import "./styles/widgets/dropdown_list.css";
 
 .centered {
     margin: auto;
