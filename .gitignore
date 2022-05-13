@@ -12,3 +12,6 @@ web_ui/webpack/node_modules
 
 # Bundler
 web_ui/scripts/RunBundler/__pycache__/
+
+# Data operations
+__pycache__

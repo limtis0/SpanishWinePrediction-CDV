@@ -1,6 +1,6 @@
-@import "./styles/widgets/process_btn.css";
 @import "./styles/widgets/dropdown_list.css";
 @import "./styles/widgets/input_fields.css";
+@import "./styles/widgets/result_block.css";
 
 .centered {
     margin: auto;

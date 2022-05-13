@@ -10,7 +10,7 @@ def column_replace_uncommon(df, col_name, val_thresh, replace_name):
 
 
 def get_data():
-    df = pd.read_csv('csv/wines_SPA.csv')
+    df = pd.read_csv('../csv/wines_SPA.csv')
 
     df.drop(['num_reviews', 'wine', 'country'], axis=1, inplace=True)  # Remove not-usable info
 
@@ -51,8 +51,8 @@ def model_predict(dataframe, model, year, price, body, acidity, wine_type, regio
 
 
 if __name__ == '__main__':
-    df = pd.read_csv('csv/input_template.csv')
-    with open('models/depth9_trees20.pkl', 'rb') as f:
+    df = pd.read_csv('../csv/input_template.csv')
+    with open('../models/depth9_trees20.pkl', 'rb') as f:
         model = pickle.load(f)
 
     print(model_predict(df, model, year=2018, price=6, body=4, acidity=3, wine_type='Red', region='Emporda', winery='other'))

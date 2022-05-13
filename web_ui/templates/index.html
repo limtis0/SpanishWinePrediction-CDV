@@ -17,23 +17,34 @@
     <link rel="stylesheet" href="{{url_for('static', filename='index.css')}}">
   </head>
   <body>
+    <!-- Prevent from resubmission --->
+    <script>
+      if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+      }
+    </script>
 
 
 
     <div class="container">
       <div class="col">
-
-      </div>
-      <div class="col">
         <div class="centered">
-          <h1>Header</h1>
-          <div id="drop"></div>
-          <div id="input"></div>
-          <button type="button" class="btn btn-primary">Run</button>
+          <h1>Red Spanish Wine Rating</h1>
+          <form method="POST" action="{{ url_for('get_result') }}">
+            <div id="drop"></div>
+            <div id="input"></div>
+            <button type="submit" class="btn btn-primary">Run</button>
+          </form>
+          <br>
+          {% if result %}
+            <h1>Result</h1>
+            <div class="card" style="width: 38rem;" id="result_block">
+              <div class="card-body">
+                <h5 class="card-text" style="font-size: 42px">{{ result }}</h5>
+              </div>
+            </div>
+          {% endif %}
         </div>
-      </div>
-      <div class="col">
-
       </div>
     </div>
 

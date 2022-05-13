@@ -19,11 +19,11 @@ class DynamicSelect extends React.Component{
                     {data.name}
                 </option>
             );
-
+        let name = label.toLowerCase().trim();
         return (
             <div>
                 <p>{label}</p>
-                <select className="form-select" onChange={this.handleChange}>
+                <select className="form-select" onChange={this.handleChange} name={name} >
                     <option>Select Item</option>
                     {options}
                 </select>
@@ -90,8 +90,27 @@ const region = [
 
 const types = [
     { id: '0', name: 'Other' },
-    { id: '1', name: 'Toro' },
-    { id: '2', name: 'Toro' },
+    { id: '1', name: 'Toro Red' },
+    { id: '2', name: 'Tempranillo' },
+    { id: '3', name: 'Ribera Del Duero Red' },
+    { id: '4', name: 'Pedro Ximenez' },
+    { id: '5', name: 'Red' },
+    { id: '6', name: 'Priorat Red' },
+    { id: '7', name: 'Rioja Red' },
+    { id: '8', name: 'Rioja White' },
+    { id: '9', name: 'Grenache' },
+    { id: '10', name: 'Cava' },
+    { id: '11', name: 'Sherry' },
+    { id: '12', name: 'Verdejo' },
+    { id: '13', name: 'Syrah' },
+    { id: '14', name: 'Monastrell' },
+    { id: '15', name: 'Mencia' },
+    { id: '16', name: 'Sparkling' },
+    { id: '17', name: 'Montsant Red' },
+    { id: '18', name: 'Albarino' },
+    { id: '19', name: 'Chardonnay' },
+    { id: '20', name: 'Cabernet Sauvignon' },
+    { id: '21', name: 'Sauvignon Blanc' },
 ];
 
 const base = [

@@ -14,7 +14,7 @@ class InputFields extends React.Component {
 
     render() {
         let label = this.props.label;
-
+        let name = this.props.name;
         return(
             <div className="form-group">
                 <label>{label}</label>
@@ -24,6 +24,7 @@ class InputFields extends React.Component {
                     placeholder="Enter number"
                     aria-label="Enter number"
                     onChange={this.handleChange}
+                    name={name}
                 />
             </div>
         )
@@ -38,8 +39,8 @@ class InputFieldsApp extends React.Component {
     render() {
         return(
             <div id="InputFields">
-                <InputFields label="Year" />
-                <InputFields label="Price" />
+                <InputFields label="Year" name="year" />
+                <InputFields label="Price €" name="price" />
             </div>
         )
     }
