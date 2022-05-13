@@ -1,11 +1,11 @@
-from scripts.RunBundler import bundle
+from web_ui.scripts.RunBundler import bundle
 from src.data_operations import model_predict
 from flask import Flask, render_template, request
 import pandas as pd
 import pickle
 
 # Bundle using webpack
-bundle(full_log=True)
+# bundle(full_log=True)
 
 app = Flask(__name__)
 
