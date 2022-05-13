@@ -15,7 +15,7 @@ class DynamicSelect extends React.Component{
         let label = this.props.label;
         let arrayOfData = this.props.arrayOfData;
         let options = arrayOfData.map((data) =>
-                <option key={data.id} value={data.id}>
+                <option key={data.name} value={data.name}>
                     {data.name}
                 </option>
             );
@@ -69,49 +69,73 @@ const winery = [
 ];
 
 const region = [
-    { id: '0', name: 'Toro' },
-    { id: '1', name: 'Vino de Espana' },
-    { id: '2', name: 'Ribera del Duero' },
-    { id: '3', name: 'Montilla-Moriles' },
-    { id: '4', name: 'Jumilla' },
-    { id: '5', name: 'Priorato' },
-    { id: '6', name: 'Rioja Alta' },
-    { id: '7', name: 'Somontano' },
-    { id: '8', name: 'Mallorca' },
-    { id: '9', name: 'Costers del Segre' },
-    { id: '10', name: 'Sardon de Duero' },
-    { id: '11', name: 'Rueda' },
-    { id: '12', name: 'Montsant' },
-    { id: '13', name: 'Rias Baixas' },
-    { id: '14', name: 'Penedes' },
-    { id: '15', name: 'Alicante' },
+    { id: '0', name: 'Other' },
+    { id: '1', name: 'Toro' },
+    { id: '2', name: 'Vino de Espana' },
+    { id: '3', name: 'Ribera del Duero' },
+    { id: '4', name: 'Montilla-Moriles' },
+    { id: '5', name: 'Jumilla' },
+    { id: '6', name: 'Priorato' },
+    { id: '7', name: 'Rioja Alta' },
+    { id: '8', name: 'Somontano' },
+    { id: '9', name: 'Mallorca' },
+    { id: '10', name: 'Costers del Segre' },
+    { id: '11', name: 'Sardon de Duero' },
+    { id: '12', name: 'Rueda' },
+    { id: '13', name: 'Montsant' },
+    { id: '14', name: 'Rias Baixas' },
+    { id: '15', name: 'Penedes' },
+    { id: '16', name: 'Alicante' },
 ];
 
 const types = [
-
+    { id: '0', name: 'Other' },
+    { id: '1', name: 'Toro' },
+    { id: '2', name: 'Toro' },
 ];
+
+const base = [
+    { name: '1' },
+    { name: '2' },
+    { name: '3' },
+    { name: '4' },
+    { name: '5' },
+]
+const acidity = [
+    { name: '1' },
+    { name: '2' },
+    { name: '3' },
+    { name: '4' },
+    { name: '5' },
+]
 
 class DropdownApp extends React.Component {
   constructor(props){
     super(props)
     this.state={
-      selectedValue: 'Nothing selected'
+      selectedValue: 'Other'
     }
   }
 
-  handleSelectChange = (selectedValue) =>{
-    this.setState({
-      selectedValue: selectedValue
-    });
+  handleSelectChange = (selectedValue) => {
+      this.setState({
+        selectedValue: selectedValue
+      });
   }
 
   render() {
     return (
-      <div id="DropdownApp">
-          <DynamicSelect label="Winery" arrayOfData={winery} onSelectChange={this.handleSelectChange} />
-          <DynamicSelect label="Region" arrayOfData={region} onSelectChange={this.handleSelectChange} />
-          <DynamicSelect label="Types" arrayOfData={types} onSelectChange={this.handleSelectChange} />
-      </div>
+        <div>
+            <div className="DropdownApp">
+                <DynamicSelect label="Winery" arrayOfData={winery} onSelectChange={this.handleSelectChange} />
+                <DynamicSelect label="Region" arrayOfData={region} onSelectChange={this.handleSelectChange} />
+                <DynamicSelect label="Grape type" arrayOfData={types} onSelectChange={this.handleSelectChange} />
+            </div>
+            <div className="DropdownApp">
+                <DynamicSelect label="Base" arrayOfData={base} onSelectChange={this.handleSelectChange} />
+                <DynamicSelect label="Acidity" arrayOfData={acidity} onSelectChange={this.handleSelectChange} />
+            </div>
+        </div>
     );
   }
 }
