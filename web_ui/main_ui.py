@@ -1,3 +1,5 @@
+import os
+
 from web_ui.scripts.RunBundler import bundle
 from src.data_operations import model_predict
 from flask import Flask, render_template, request
@@ -50,8 +52,8 @@ def get_result():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0', port=3090)
+    app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', '5000'))
 
 
 def run_app():
-    app.run(debug=True, host='0.0.0.0', port=3090)
+    app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', '5000'))
