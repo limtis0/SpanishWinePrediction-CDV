@@ -1,7 +1,7 @@
 from web_ui.main_ui import run_app
 
 
-def app(environ, start_response):
+def app():
     run_app()
 
 
