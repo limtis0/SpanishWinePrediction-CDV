@@ -1,5 +1,5 @@
 from scripts.RunBundler import bundle
-from data_operations import model_predict
+from src.data_operations import model_predict
 from flask import Flask, render_template, request
 import pandas as pd
 import pickle
