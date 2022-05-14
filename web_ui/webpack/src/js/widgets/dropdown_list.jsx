@@ -33,7 +33,7 @@ class DynamicSelect extends React.Component{
 }
 
 const winery = [
-    { id: '0', name: 'Other' },
+    { id: '0', name: 'other' },
     { id: '1', name: 'Artadi' },
     { id: '2', name: 'Vega Sicilia' },
     { id: '3', name: 'Toro Albala' },
@@ -69,7 +69,7 @@ const winery = [
 ];
 
 const region = [
-    { id: '0', name: 'Other' },
+    { id: '0', name: 'other' },
     { id: '1', name: 'Toro' },
     { id: '2', name: 'Vino de Espana' },
     { id: '3', name: 'Ribera del Duero' },
@@ -89,7 +89,7 @@ const region = [
 ];
 
 const types = [
-    { id: '0', name: 'Other' },
+    { id: '0', name: 'other' },
     { id: '1', name: 'Toro Red' },
     { id: '2', name: 'Tempranillo' },
     { id: '3', name: 'Ribera Del Duero Red' },
@@ -132,7 +132,7 @@ class DropdownApp extends React.Component {
   constructor(props){
     super(props)
     this.state={
-      selectedValue: 'Other'
+      selectedValue: 'other'
     }
   }
 
