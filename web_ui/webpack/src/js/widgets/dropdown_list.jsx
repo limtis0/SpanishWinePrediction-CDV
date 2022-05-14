@@ -23,8 +23,8 @@ class DynamicSelect extends React.Component{
         return (
             <div>
                 <p>{label}</p>
-                <select className="form-select" onChange={this.handleChange} name={name} >
-                    <option>Select Item</option>
+                <select className="form-select" onChange={this.handleChange} name={name} required>
+                    <option value="">Select Item</option>
                     {options}
                 </select>
             </div>
@@ -89,7 +89,6 @@ const region = [
 ];
 
 const types = [
-    { id: '0', name: 'other' },
     { id: '1', name: 'Toro Red' },
     { id: '2', name: 'Tempranillo' },
     { id: '3', name: 'Ribera Del Duero Red' },
