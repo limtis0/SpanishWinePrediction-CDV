@@ -23,8 +23,8 @@ class DynamicSelect extends React.Component{
         return (
             <div>
                 <p>{label}</p>
-                <select required className="form-select" onChange={this.handleChange} name={name} >
-                    <option>Select Item</option>
+                <select className="form-select" onChange={this.handleChange} name={name} required>
+                    <option value="">Select Item</option>
                     {options}
                 </select>
             </div>
