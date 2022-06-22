@@ -1,2 +1,3 @@
 # SpanishWinePrediction-CDV
-[![PRESENTATION](https://img.youtube.com/vi/pp1-WdktOA8/0.jpg)](https://www.youtube.com/watch?v=pp1-WdktOA8)
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pp1-WdktOA8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
